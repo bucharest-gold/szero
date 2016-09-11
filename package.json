@@ -1,10 +1,13 @@
 {
-  "name": "sz",
+  "name": "szero",
   "version": "0.0.1",
-  "description": "",
+  "description": "Sub Zero dependency search.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test/szero-test.js | tap-spec",
+    "coverage": "istanbul cover tape test/szero-test.js",
+    "lint": "eslint test/*.js index.js lib/*.js",
+    "prepublish": "nsp check"
   },
   "author": "Helio Frota",
   "dependencies": {
@@ -12,5 +15,17 @@
     "line-by-line": "^0.1.5",
     "roi": "^0.12.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "istanbul": "^0.4.5",
+    "nsp": "^2.6.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  }
 }

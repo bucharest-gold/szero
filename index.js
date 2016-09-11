@@ -88,7 +88,6 @@ function findAllFiles (dir, list) {
 }
 
 function report () {
-  
   console.log(reportRequire);
   console.log(reportVarNames);
 }
@@ -139,20 +138,3 @@ readFile('./package.json')
         });
     });
   });
-
-  // 1. read package.json OK
-  // 1.1 locate and store dependencies names OK
-  // 2. read a .js file OK
-  // 3. search for 'require('depname')' and relate this to const, let or var name OK
-  // 4. search this ^ on 2. OK
-
-  // 5. report the usage on lines OK
-
-  // report :
-  // =========
-
-  // roi is used on :
-
-  // mysuper.js line 80
-  // mysuper.js line 95
-  // urbandictionarycli.js line 29
