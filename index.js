@@ -13,7 +13,9 @@ function run (directory) {
           .then(lines => {
             const declarations = searcher.searchDeclarations(lines, dependencies);
             const result = searcher.searchUsage(lines, file, declarations);
-            reporter.report(result);
+            if (result.length) {
+              reporter.report(result);
+            }
           });
       });
     });

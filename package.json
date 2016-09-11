@@ -11,6 +11,7 @@
   },
   "author": "Helio Frota",
   "dependencies": {
+    "cli-table2": "^0.2.0",
     "fidelity": "^4.0.0",
     "line-by-line": "^0.1.5",
     "roi": "^0.12.1"
