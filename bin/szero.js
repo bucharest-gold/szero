@@ -20,6 +20,7 @@ function run (directory) {
     }
   });
   reporter.report(result);
+  reporter.reportUnused(result, dependencies);
 }
 
 if (process.argv.length === 3) {
