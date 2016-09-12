@@ -23,5 +23,9 @@
     "nsp": "^2.6.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "szero": "./bin/szero.js"
   }
 }

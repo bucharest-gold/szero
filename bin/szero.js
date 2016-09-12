@@ -1,8 +1,10 @@
+#! /usr/bin/env node
+
 'use strict';
 
-const reader = require('./lib/reader');
-const searcher = require('./lib/searcher');
-const reporter = require('./lib/reporter');
+const reader = require('../lib/reader');
+const searcher = require('../lib/searcher');
+const reporter = require('../lib/reporter');
 
 function run (directory) {
   const packageJson = reader.read(directory + '/package.json');
@@ -20,4 +22,10 @@ function run (directory) {
   reporter.report(result);
 }
 
-run('../litoria');
+if (process.argv.length === 3) {
+  run(process.argv[2]);
+} else {
+  const RED = '\x1b[31m';
+  const COLOR_BACK = '\x1b[39m';
+  console.log(RED + 'Usage: ' + COLOR_BACK + 'szero directory_here');
+}

@@ -19,9 +19,12 @@
 
 ## Installation
 
-    N/A
+    npm install szero -g
 
 ## Usage
 
-    N/A
+    $ szero /path_to/myproject
 
+![out.gif](out.gif)
+
+![a.png](a.png)
