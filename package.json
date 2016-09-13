@@ -10,6 +10,10 @@
     "prepublish": "nsp check"
   },
   "author": "Helio Frota",
+  "repository": {
+    "type": "git",
+    "url": "bucharest-gold/szero"
+  },
   "dependencies": {},
   "license": "MIT",
   "devDependencies": {
