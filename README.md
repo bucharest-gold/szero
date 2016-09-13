@@ -25,6 +25,6 @@
 
     $ szero /path_to/myproject
 
-![out.gif](out.gif)
+![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
-![a.png](a.png)
+![a.png](https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png)
