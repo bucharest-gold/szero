@@ -5,6 +5,7 @@
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
+const log = require('../lib/log-color');
 
 function run (directory) {
   const packageJson = reader.read(directory + '/package.json');
@@ -26,7 +27,5 @@ function run (directory) {
 if (process.argv.length === 3) {
   run(process.argv[2]);
 } else {
-  const RED = '\x1b[31m';
-  const COLOR_BACK = '\x1b[39m';
-  console.log(RED + 'Usage: ' + COLOR_BACK + 'szero directory_here');
+  log.red('Usage: szero directory_here');
 }

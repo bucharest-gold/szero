@@ -26,7 +26,8 @@
     "istanbul": "^0.4.5",
     "nsp": "^2.6.1",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "test-console": "^1.0.0"
   },
   "preferGlobal": true,
   "bin": {
