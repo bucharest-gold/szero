@@ -4,6 +4,7 @@ const test = require('tape');
 const log = require('../lib/log-color');
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
+const reporter = require('../lib/reporter');
 const path = require('path');
 const stdout = require('test-console').stdout;
 
@@ -58,5 +59,16 @@ test('Should search for declaration usage.', t => {
   t.equal(usage[1].declaration, 'roi');
   t.equal(usage[1].file, 'x.js');
   t.equal(usage[1].line, 4);
+  t.end();
+});
+
+test('Should report.', t => {
+  const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
+  const dependencies = searcher.searchDependencies(packageJsonLines);
+  const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
+  const resultLogged = stdout.inspectSync(() => reporter.report(usage));
+  t.deepEqual(resultLogged.toString().includes('roi'), true);
   t.end();
 });
