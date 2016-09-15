@@ -7,7 +7,7 @@
 
 [![NPM](https://nodei.co/npm/szero.png)](https://npmjs.org/package/szero)
 
-
+Sub Zero dependency search.
 
 |                 | Project Info  |
 | --------------- | ------------- |
@@ -28,3 +28,7 @@
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
 ![a.png](https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png)
+
+## Contributing
+
+Please read the [contributing guide](./CONTRIBUTING.md)
