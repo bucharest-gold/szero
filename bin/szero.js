@@ -26,8 +26,8 @@ function run (directory) {
       result.push(usage);
     }
   });
-  reporter.report(result);
-  reporter.reportUnused(result, dependencies);
+  reporter.report(result, dependencies);
+  reporter.fileReport(result, dependencies);
 }
 
 if (process.argv.length === 3) {
