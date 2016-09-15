@@ -8,7 +8,13 @@ const reporter = require('../lib/reporter');
 const log = require('../lib/log-color');
 
 function run (directory) {
-  const packageJson = reader.read(directory + '/package.json');
+  let packageJson;
+  try {
+    packageJson = reader.read(directory + '/package.json');
+  } catch (e) {
+    log.red('package.json is require');
+    process.exit(1);
+  }
   const dependencies = searcher.searchDependencies(packageJson);
   const files = reader.find(directory);
   const result = [];
