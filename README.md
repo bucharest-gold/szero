@@ -11,7 +11,7 @@
 
 |                 | Project Info  |
 | --------------- | ------------- |
-| License:        | MIT |
+| License:        | Apache-2.0 |
 | Build:          | make |
 | Documentation:  | N/A |
 | Issue tracker:  | https://github.com/bucharest-gold/szero/issues |

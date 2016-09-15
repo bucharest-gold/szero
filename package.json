@@ -9,13 +9,20 @@
     "lint": "eslint test/*.js index.js lib/*.js",
     "prepublish": "nsp check"
   },
+  "files": [
+    "bin",
+    "LICENSE.txt",
+    "package.json",
+    "README.md",
+    "lib"
+  ],
   "author": "Helio Frota",
   "repository": {
     "type": "git",
     "url": "bucharest-gold/szero"
   },
   "dependencies": {},
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "eslint": "^3.5.0",
     "eslint-config-semistandard": "^7.0.0",
