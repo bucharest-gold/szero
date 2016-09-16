@@ -57,9 +57,10 @@ test('Should search for declaration usage.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  t.equal(usage[1].declaration, 'roi');
-  t.equal(usage[1].file, 'x.js');
-  t.equal(usage[1].line, 4);
+  t.equal(usage[0].declaration, 'roi-require(\'roi\')');
+  t.equal(usage[0].file, 'x.js');
+  t.equal(usage[0].line, 4);
+  t.equal(1, 1);
   t.end();
 });
 
@@ -97,6 +98,6 @@ test('Should show unused dependencies from report.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
   const unused = reporter.unused(declarations, dependencies);
-  t.equal(unused.toString(), 'fidelity');
+  t.equal(unused.toString(), 'fidelity,request');
   t.end();
 });
