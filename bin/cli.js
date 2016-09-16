@@ -24,6 +24,6 @@ module.exports = function run (directory) {
       result.push(usage);
     }
   });
-  reporter.report(result, dependencies);
+  reporter.consoleReport(result, dependencies);
   reporter.fileReport(result, dependencies);
 };

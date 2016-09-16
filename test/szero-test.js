@@ -70,7 +70,7 @@ test('Should report.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  const resultLogged = stdout.inspectSync(() => reporter.report(usage, dependencies));
+  const resultLogged = stdout.inspectSync(() => reporter.consoleReport(usage, dependencies));
   t.deepEqual(resultLogged.toString().includes('roi'), true);
   t.end();
 });
