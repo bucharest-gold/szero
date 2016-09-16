@@ -7,7 +7,8 @@
     "test": "n/a"
   },
   "dependencies": {
-    "roi": "^0.2.'"
+    "roi": "^0.2.'",
+    "fidelity": "0.1.2"
   },
   "license": "Apache-2.0",
   "devDependencies": {

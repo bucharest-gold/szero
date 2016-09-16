@@ -90,3 +90,13 @@ test('Should report to file.', t => {
   }
   t.end();
 });
+
+test('Should show unused dependencies from report.', t => {
+  const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
+  const dependencies = searcher.searchDependencies(packageJsonLines);
+  const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const unused = reporter.unused(declarations, dependencies);
+  t.equal(unused.toString(), 'fidelity');
+  t.end();
+});
