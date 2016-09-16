@@ -4,8 +4,8 @@
   "description": "Sub Zero dependency search.",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/szero-test.js | tap-spec",
-    "coverage": "istanbul cover tape test/szero-test.js",
+    "test": "tape test/*.js | tap-spec",
+    "coverage": "istanbul cover tape -- test/*.js",
     "lint": "eslint test/*.js index.js lib/*.js",
     "prepublish": "nsp check"
   },
