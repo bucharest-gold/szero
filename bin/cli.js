@@ -29,8 +29,14 @@ module.exports = function run (directory, options) {
     });
 
     const jsonReport = reporter.jsonReport(result, dependencies);
-    reporter.consoleReport(jsonReport);
-    reporter.fileReport(jsonReport);
+
+    if (options.consoleReporter) {
+      reporter.consoleReport(jsonReport);
+    }
+
+    if (options.fileReporter) {
+      reporter.fileReport(jsonReport);
+    }
 
     return resolve(jsonReport);
   });
