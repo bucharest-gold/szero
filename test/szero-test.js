@@ -70,7 +70,8 @@ test('Should report.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  const resultLogged = stdout.inspectSync(() => reporter.consoleReport(usage, dependencies));
+  const jsonReport = reporter.jsonReport(usage, dependencies);
+  const resultLogged = stdout.inspectSync(() => reporter.consoleReport(jsonReport));
   t.deepEqual(resultLogged.toString().includes('roi'), true);
   t.end();
 });
@@ -81,7 +82,8 @@ test('Should report to file.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  reporter.fileReport(usage, dependencies);
+  const jsonReport = reporter.jsonReport(usage, dependencies);
+  reporter.fileReport(jsonReport);
   try {
     fs.statSync('szero.txt');
     t.equal(1, 1);

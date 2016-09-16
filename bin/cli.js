@@ -24,6 +24,8 @@ module.exports = function run (directory) {
       result.push(usage);
     }
   });
-  reporter.consoleReport(result, dependencies);
-  reporter.fileReport(result, dependencies);
+
+  const jsonReport = reporter.jsonReport(result, dependencies);
+  reporter.consoleReport(jsonReport);
+  reporter.fileReport(jsonReport);
 };
