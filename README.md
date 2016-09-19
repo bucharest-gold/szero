@@ -33,6 +33,20 @@ The default output is to the console, but you can specify a "reporter" of file t
 
     $szero /path_to/myproject --reporter=file
 
+### Programmatic API
+
+To use the `szero` api in code, first install it locally
+
+    $ npm install szero --save
+
+Then require it in your code and call the report method, which returns a Promise:
+
+    const szero = require('szero');
+    szero.report(directory).then((jsonReport) => {
+        console.log(jsonReport);
+    });
+
+
 ## Contributing
 
 Please read the [contributing guide](./CONTRIBUTING.md)
