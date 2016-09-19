@@ -5,7 +5,7 @@ const log = require('../lib/log-color');
 
 const processArgs = process.argv;
 
-if (processArgs.length > 3) {
+if (processArgs.length >= 3) {
   // Default the console option when calling from the command line
   const options = {
     consoleReporter: true
