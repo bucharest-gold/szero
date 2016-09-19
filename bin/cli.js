@@ -30,7 +30,7 @@ module.exports = function run (directory, options) {
 
     const jsonReport = reporter.jsonReport(result, dependencies);
 
-    if (jsonReport.unused) {
+    if (jsonReport.unused && options.ci) {
       reporter.consoleReport(jsonReport);
       process.exit(1);
     }

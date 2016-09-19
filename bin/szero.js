@@ -24,6 +24,11 @@ if (processArgs.length >= 3) {
     }
   }
 
+  const ci = processArgs.filter(p => p.includes('ci'));
+  if (ci.length) {
+    options.ci = true;
+  }
+
   run(processArgs[2], options);
 } else {
   log.red('Usage: szero directory_here');
