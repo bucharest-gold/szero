@@ -30,6 +30,11 @@ module.exports = function run (directory, options) {
 
     const jsonReport = reporter.jsonReport(result, dependencies);
 
+    if (jsonReport.unused) {
+      reporter.consoleReport(jsonReport);
+      process.exit(1);
+    }
+
     if (options.consoleReporter) {
       reporter.consoleReport(jsonReport);
     }
@@ -41,4 +46,3 @@ module.exports = function run (directory, options) {
     return resolve(jsonReport);
   });
 };
-
