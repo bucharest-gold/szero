@@ -29,7 +29,7 @@ Sub Zero dependency search.
 
 ![a.png](https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png)
 
-The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.LICENSE.txt
+The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
 
     $szero /path_to/myproject --reporter=file
 
