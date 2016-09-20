@@ -29,6 +29,7 @@ Sub Zero dependency search.
     $ szero . --reporters=file (report the result to a file)
     $ szero . --dev=true (enables devDependencies search).
     $ szero . --reporters=file --dev=true
+    $ szero . --summary=true  (shows only unused and missing dependencies)
 
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
