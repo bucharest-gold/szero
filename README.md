@@ -23,7 +23,12 @@ Sub Zero dependency search.
 
 ## Usage
 
-    $ szero /path_to/myproject
+    $ szero /path_to/project  (or use '.' for current directory)
+    $ szero .
+    $ szero . --ci=true  ('break the build' if unused dependencies found)
+    $ szero . --reporters=file (report the result to a file)
+    $ szero . --dev=true (enables devDependencies search).
+    $ szero . --reporters=file --dev=true
 
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
