@@ -22,14 +22,13 @@ module.exports = function run (directory, options) {
     files.forEach(file => {
       const lines = reader.read(file);
       const declarations = searcher.searchDeclarations(lines, dependencies[0]);
-      console.log(declarations);
       const usage = searcher.searchUsage(lines, file, declarations);
       if (usage.length) {
         result.push(usage);
       }
     });
 
-    const jsonReport = reporter.jsonReport(result, dependencies[0]);
+    const jsonReport = reporter.jsonReport(result, dependencies);
 
     if (jsonReport.unused && options.ci) {
       reporter.consoleReport(jsonReport);
