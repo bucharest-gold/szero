@@ -24,9 +24,20 @@ if (processArgs.length >= 3) {
     }
   }
 
-  const ci = processArgs.filter(p => p.includes('ci'));
+  // If --ci=true, enables process.exit() when unused dependency found.
+  const ci = processArgs.filter(p => p.includes('--ci='));
   if (ci.length) {
-    options.ci = true;
+    if (ci.split('=')[1] === 'true') {
+      options.ci = true;
+    }
+  }
+
+  // If --dev=true, enables devDependencies processing.
+  const dev = processArgs.filter(p => p.includes('--dev='));
+  if (dev.length) {
+    if (dev.split('=')[1] === 'true') {
+      options.dev = true;
+    }
   }
 
   run(processArgs[2], options);
