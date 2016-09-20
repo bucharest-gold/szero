@@ -23,9 +23,10 @@ test('should return some info', (t) => {
   const options = {};
   szero.report(dir, options).then((jsonReport) => {
     console.log(jsonReport);
-    t.equal(Object.keys(jsonReport).length, 5, 'should have 5 keys');
+    t.equal(Object.keys(jsonReport).length, 6, 'should have 5 keys');
     t.true(jsonReport.groups, 'should have a groups object');
     t.true(jsonReport.dependencies, 'should have a dependencies object');
+    t.true(jsonReport.devDependencies, 'should have a devDependencies object');
     t.true(jsonReport.declarations, 'should have a declarations object');
     t.true(jsonReport.totals, 'should have a totals object');
     t.true(jsonReport.unused, 'should have a unused object');

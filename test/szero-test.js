@@ -38,7 +38,7 @@ test('Should find javascript files.', t => {
 test('Should search for dependencies.', t => {
   const lines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(lines, true);
-  t.equal(dependencies.toString().includes('roi'), true);
+  t.equal(dependencies[0].toString().includes('roi'), true);
   t.end();
 });
 
@@ -46,7 +46,7 @@ test('Should search for declarations.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, true);
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
-  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   t.equal(declarations.toString().includes('require'), true);
   t.end();
 });
@@ -55,7 +55,7 @@ test('Should search for declaration usage.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
-  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
   t.equal(usage[0].declaration, 'roi-require(\'roi\')');
   t.equal(usage[0].file, 'x.js');
@@ -68,9 +68,9 @@ test('Should report.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
-  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  const jsonReport = reporter.jsonReport(usage, dependencies);
+  const jsonReport = reporter.jsonReport(usage, dependencies[0]);
   const resultLogged = stdout.inspectSync(() => reporter.consoleReport(jsonReport));
   t.deepEqual(resultLogged.toString().includes('roi'), true);
   t.end();
@@ -80,9 +80,9 @@ test('Should report to file.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
-  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
-  const jsonReport = reporter.jsonReport(usage, dependencies);
+  const jsonReport = reporter.jsonReport(usage, dependencies[0]);
   reporter.fileReport(jsonReport);
   try {
     fs.statSync('szero.txt');
@@ -98,8 +98,8 @@ test('Should show unused dependencies from report.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
-  const declarations = searcher.searchDeclarations(javascriptLines, dependencies);
-  const unused = reporter.unused(declarations, dependencies);
+  const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
+  const unused = reporter.unused(declarations, dependencies[0]);
   t.equal(unused.toString(), 'fidelity,request');
   t.end();
 });
