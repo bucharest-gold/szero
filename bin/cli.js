@@ -19,8 +19,15 @@ module.exports = function run (directory, options) {
     const dependencies = searcher.searchDependencies(packageJson, options.dev);
     const files = reader.find(directory);
     const result = [];
+    const missingDependencies = new Set();
     files.forEach(file => {
       const lines = reader.read(file);
+      if (options.summary) {
+        const missing = searcher.searchMissingDependencies(lines, dependencies);
+        if (missing.length) {
+          missingDependencies.add(missing.toString());
+        }
+      }
       const declarations = searcher.searchDeclarations(lines, dependencies[0]);
       const usage = searcher.searchUsage(lines, file, declarations);
       if (usage.length) {
@@ -30,17 +37,21 @@ module.exports = function run (directory, options) {
 
     const jsonReport = reporter.jsonReport(result, dependencies);
 
-    if (jsonReport.unused && options.ci) {
-      reporter.consoleReport(jsonReport);
-      process.exit(1);
-    }
+    if (options.summary) {
+      reporter.summary(jsonReport, Array.from(missingDependencies));
+    } else {
+      if (jsonReport.unused && options.ci) {
+        reporter.consoleReport(jsonReport);
+        process.exit(1);
+      }
 
-    if (options.consoleReporter) {
-      reporter.consoleReport(jsonReport);
-    }
+      if (options.consoleReporter) {
+        reporter.consoleReport(jsonReport);
+      }
 
-    if (options.fileReporter) {
-      reporter.fileReport(jsonReport);
+      if (options.fileReporter) {
+        reporter.fileReport(jsonReport);
+      }
     }
 
     return resolve(jsonReport);

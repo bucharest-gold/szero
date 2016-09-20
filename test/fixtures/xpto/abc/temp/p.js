@@ -1,5 +1,8 @@
 'use strict';
 
-const fs = require('fs');
+const express = require('express');
+let foo = require('./foo/index');
+var bar = require('../lib/bar');
 
-console.log('p');
+
+console.log(express);

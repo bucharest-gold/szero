@@ -40,6 +40,15 @@ if (processArgs.length >= 3) {
     }
   }
 
+  // If --summary=true, Show only summary report.
+  const summary = processArgs.filter(p => p.includes('--summary='));
+  if (summary.length) {
+    if (summary[0].split('=')[1] === 'true') {
+      options.summary = true;
+      options.dev = true;
+    }
+  }
+
   run(processArgs[2], options);
 } else {
   log.red('Usage: szero directory_here');

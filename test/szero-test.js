@@ -64,6 +64,15 @@ test('Should search for declaration usage.', t => {
   t.end();
 });
 
+test('Should search for missing dependencies.', t => {
+  const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
+  const dependencies = searcher.searchDependencies(packageJsonLines, true);
+  const javascriptLines = reader.read(path.join(__dirname, '/fixtures/xpto/abc/temp/p.js'));
+  const missing = searcher.searchMissingDependencies(javascriptLines, dependencies);
+  t.equal(missing.toString().includes('express'), true);
+  t.end();
+});
+
 test('Should report.', t => {
   const packageJsonLines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
