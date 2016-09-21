@@ -40,7 +40,7 @@ module.exports = function run (directory, options) {
     if (options.summary) {
       reporter.summary(jsonReport, Array.from(missingDependencies));
     } else {
-      if (jsonReport.unused && options.ci) {
+      if (jsonReport.unused !== 'None.' && options.ci) {
         reporter.consoleReport(jsonReport);
         process.exit(1);
       }
