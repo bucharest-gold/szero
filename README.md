@@ -25,11 +25,13 @@ Sub Zero dependency search.
 
     $ szero /path_to/project  (or use '.' for current directory)
     $ szero .
-    $ szero . --ci=true  ('break the build' if unused dependencies found)
-    $ szero . --reporters=file (report the result to a file)
-    $ szero . --dev=true (enables devDependencies search).
-    $ szero . --reporters=file --dev=true
-    $ szero . --summary=true  (shows only unused and missing dependencies)
+    $ szero . --ci  ('break the build' if unused dependencies found)
+    $ szero . --file (report the result to a file)
+    $ szero . --dev (enables devDependencies search).
+    $ szero . --file --dev
+    $ szero . --summary  (shows only unused and missing dependencies)
+    $ szero --help (shows help and usage)
+    $ szero --version (shows szero's version)
 
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
@@ -37,7 +39,7 @@ Sub Zero dependency search.
 
 The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
 
-    $szero /path_to/myproject --reporter=file
+    $szero /path_to/myproject --file
 
 ### Programmatic API
 
