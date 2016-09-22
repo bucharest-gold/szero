@@ -21,7 +21,9 @@
     "type": "git",
     "url": "bucharest-gold/szero"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
   "license": "Apache-2.0",
   "devDependencies": {
     "eslint": "^3.5.0",
