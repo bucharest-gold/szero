@@ -22,7 +22,6 @@ test('should return some info', (t) => {
   const dir = path.join(__dirname, '../sample_project');
   const options = {};
   szero.report(dir, options).then((jsonReport) => {
-    console.log(jsonReport);
     t.equal(Object.keys(jsonReport).length, 6, 'should have 5 keys');
     t.true(jsonReport.groups, 'should have a groups object');
     t.true(jsonReport.dependencies, 'should have a dependencies object');
