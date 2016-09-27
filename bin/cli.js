@@ -50,7 +50,7 @@ module.exports = function run (directory, options) {
       }
 
       if (options.fileReporter) {
-        reporter.fileReport(jsonReport);
+        reporter.fileReport(jsonReport, options);
       }
     }
 

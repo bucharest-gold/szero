@@ -7,11 +7,11 @@ program
   .version(require('../package.json').version)
   .usage('directory [--options]')
   .option('-f --file', 'enable file reporter')
+  .option('--filename <filename>', 'change the default filename')
   .option('--ci', 'enables process.exit() when unused dependency found')
   .option('--dev', 'enables devDependencies processing.')
   .option('--summary', 'enables summary report')
   .parse(process.argv);
-
 
 if (program.args.length === 0) {
   program.help();
@@ -23,6 +23,12 @@ const options = {
 };
 
 options.fileReporter = program.file;
+
+if (program.filename) {
+  options.filename = program.filename;
+  options.fileReporter = true;
+}
+
 options.ci = program.ci;
 options.dev = program.dev;
 
