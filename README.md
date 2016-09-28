@@ -59,6 +59,13 @@ Then require it in your code and call the report method, which returns a Promise
         console.log(jsonReport);
     });
 
+To have the ouput be in the "file" format, for outputting to a file, just use the fileReport method, which also returns a Promise:
+
+    const szero = require('szero');
+    szero.fileReport(directory).then((fileReport) => {
+        fs.writeFileSync('szero.txt', fileReport);
+    });
+
 
 ## Contributing
 

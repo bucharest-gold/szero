@@ -6,6 +6,7 @@ const szero = require('../index');
 
 test('should export report function', (t) => {
   t.equal(typeof szero.report, 'function', 'there should be a report function');
+  t.equal(typeof szero.fileReport, 'function', 'there should be a fileReport function');
   t.end();
 });
 
@@ -29,6 +30,15 @@ test('should return some info', (t) => {
     t.true(jsonReport.declarations, 'should have a declarations object');
     t.true(jsonReport.totals, 'should have a totals object');
     t.true(jsonReport.unused, 'should have a unused object');
+    t.end();
+  });
+});
+
+test('should return file info', (t) => {
+  const dir = path.join(__dirname, '../sample_project');
+  const options = {};
+  szero.fileReport(dir, options).then((fileReport) => {
+    t.equal(fileReport.indexOf('roi-require(\'roi\'):') > -1, true, 'The file report should have this require in it');
     t.end();
   });
 });
