@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Index</title>
+	<title>Documentation Modules</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,90 +65,88 @@
 		<div id="main">
 			
 
+	<h1 class="page-title">Modules</h1>
+<section>
+
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+<dl class="details">
+    
+
 	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
 	
 
 
 
-
-
-
-
-
-
-
-
-	
 	
 
+	
+
+	
+
+	
+</dl>
 
 
+        
+    
+    </div>
 
+    
 
-    <section class="readme-section">
-        <article><h1>szero</h1><p><a href="https://coveralls.io/github/bucharest-gold/szero"><img src="https://coveralls.io/repos/github/bucharest-gold/szero/badge.svg" alt="Coverage Status"></a>
-<a href="https://travis-ci.org/bucharest-gold/szero"><img src="https://travis-ci.org/bucharest-gold/szero.svg?branch=master" alt="Build Status"></a>
-<a href="https://snyk.io/test/npm/szero"><img src="https://snyk.io/test/npm/szero/badge.svg" alt="Known Vulnerabilities"></a>
-<a href="https://david-dm.org/bucharest-gold/szero"><img src="https://david-dm.org/bucharest-gold/szero/status.svg" alt="dependencies Status"></a></p>
-<p><a href="https://npmjs.org/package/szero"><img src="https://nodei.co/npm/szero.png" alt="NPM"></a></p>
-<p>Sub Zero dependency search.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Project Info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>License:</td>
-<td>Apache-2.0</td>
-</tr>
-<tr>
-<td>Build:</td>
-<td>make</td>
-</tr>
-<tr>
-<td>Documentation:</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>Issue tracker:</td>
-<td>https://github.com/bucharest-gold/szero/issues</td>
-</tr>
-<tr>
-<td>Engines:</td>
-<td>Node.js 4.x, 5.x, 6.x</td>
-</tr>
-</tbody>
-</table>
-<h2>Installation</h2><pre class="prettyprint source"><code>npm install szero -g</code></pre><h2>Usage</h2><pre class="prettyprint source"><code>$ szero /path_to/project  (or use '.' for current directory)
-$ szero .
-$ szero . --ci  ('break the build' if unused dependencies found)
-$ szero . --file (report the result to a file)
-$ szero . --filename (specify a different filename, defaults to szero.txt)
-$ szero . --dev (enables devDependencies search).
-$ szero . --file --dev
-$ szero . --summary  (shows only unused and missing dependencies)
-$ szero --help (shows help and usage)
-$ szero --version (shows szero's version)</code></pre><p><img src="https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif" alt="out.gif"></p>
-<p><img src="https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png" alt="a.png"></p>
-<p>The default output is to the console, but you can specify a &quot;reporter&quot; of file to also output the results to a file called szero.txt</p>
-<pre class="prettyprint source"><code>$szero /path_to/myproject --file</code></pre><p>To change the filename that is outputted, use the <code>--filename</code> option.</p>
-<pre class="prettyprint source"><code>$szero /path_to/myproject --filename output.txt</code></pre><h3>Programmatic API</h3><p>To use the <code>szero</code> api in code, first install it locally</p>
-<pre class="prettyprint source"><code>$ npm install szero --save</code></pre><p>Then require it in your code and call the report method, which returns a Promise:</p>
-<pre class="prettyprint source"><code>const szero = require('szero');
-szero.report(directory).then((jsonReport) => {
-    console.log(jsonReport);
-});</code></pre><p>To have the ouput be in the &quot;file&quot; format, for outputting to a file, just use the fileReport method, which also returns a Promise:</p>
-<pre class="prettyprint source"><code>const szero = require('szero');
-szero.fileReport(directory).then((fileReport) => {
-    fs.writeFileSync('szero.txt', fileReport);
-});</code></pre><h2>Contributing</h2><p>Please read the <a href="./CONTRIBUTING.md">contributing guide</a></p></article>
-    </section>
+    
 
+    
 
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
