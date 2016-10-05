@@ -1,5 +1,6 @@
 ci: test
 	npm run coverage
+	npm run docs
 
 test: lint
 	npm run test
