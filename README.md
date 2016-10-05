@@ -66,6 +66,7 @@ To have the ouput be in the "file" format, for outputting to a file, just use th
         fs.writeFileSync('szero.txt', fileReport);
     });
 
+More information can be found on the docs: https://bucharest-gold.github.io/szero/module-szero.html
 
 ## Contributing
 
