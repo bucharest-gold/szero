@@ -13,7 +13,7 @@ Sub Zero dependency search.
 | --------------- | ------------- |
 | License:        | Apache-2.0 |
 | Build:          | make |
-| Documentation:  | N/A |
+| Documentation:  | https://bucharest-gold.github.io/szero/module-szero.html |
 | Issue tracker:  | https://github.com/bucharest-gold/szero/issues |
 | Engines:        | Node.js 4.x, 5.x, 6.x |
 
