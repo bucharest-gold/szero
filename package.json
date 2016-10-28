@@ -23,7 +23,8 @@
     "url": "bucharest-gold/szero"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "roi": "^0.14.0"
   },
   "license": "Apache-2.0",
   "devDependencies": {
