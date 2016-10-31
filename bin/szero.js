@@ -7,6 +7,7 @@ program
   .version(require('../package.json').version)
   .usage('directory [--options]')
   .option('-f --file', 'enable file reporter')
+  .option('-l --license', 'enable license lookup')
   .option('--filename <filename>', 'change the default filename')
   .option('--ci', 'enables process.exit() when unused dependency found')
   .option('--dev', 'enables devDependencies processing.')
@@ -31,6 +32,8 @@ if (program.filename) {
 
 options.ci = program.ci;
 options.dev = program.dev;
+
+options.license = program.license;
 
 if (program.summary) {
   options.dev = true;
