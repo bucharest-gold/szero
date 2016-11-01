@@ -23,3 +23,15 @@ test('Should pass and return an object with real project', (t) => {
     t.end();
   });
 });
+
+test('Should run a summary report', (t) => {
+  cli(path.join(__dirname, '/fixtures'), {
+    summary: true
+  }).then((report) => {
+    t.deepEqual(report.dependencies, [ 'roi', 'fidelity', 'request', 'ramda' ]);
+    t.deepEqual(report.unused, [ 'request' ]);
+    t.deepEqual(report.devDependencies, []);
+    t.pass();
+    t.end();
+  });
+});
