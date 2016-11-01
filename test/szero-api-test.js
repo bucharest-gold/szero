@@ -11,7 +11,7 @@ test('should export report function', (t) => {
 });
 
 test('should return a promise', (t) => {
-  const dir = path.join(__dirname, './test_project');
+  const dir = path.join(__dirname, '../sample_project');
   const options = {};
   const szeroreturn = szero.report(dir, options);
 
