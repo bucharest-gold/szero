@@ -9,7 +9,8 @@
   "dependencies": {
     "roi": "^0.2.'",
     "fidelity": "0.1.2",
-    "request": "1.2.3"
+    "request": "1.2.3",
+    "ramda": "*"
   },
   "license": "Apache-2.0",
   "devDependencies": {
