@@ -54,6 +54,16 @@ module.exports = function run (directory, options) {
       }
     }
 
-    return resolve(jsonReport);
+    if (!options.license) {
+      return resolve(jsonReport);
+    }
+
+    reporter.licenseReport(jsonReport.dependencies).then((licenses) => {
+      jsonReport.licenses = licenses;
+      return resolve(jsonReport);
+    }).catch((err) => {
+      // There was an error with the getting of the license
+      return reject(err);
+    });
   });
 };

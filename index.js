@@ -11,6 +11,7 @@ const reporter = require('./lib/reporter');
   JSON Reporter
   @param {string} directory - path to your project
   @param {object} [options]
+  @param {boolean} [options.license] - If true, will fetch license information for each dependency. default: false
   @returns {Promise} - returns a Promise with the repoter values as JSON
   @instance
 */
