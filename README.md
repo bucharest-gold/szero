@@ -29,7 +29,7 @@ Sub Zero dependency search.
     $ szero . --file (report the result to a file)
     $ szero . --filename (specify a different filename, defaults to szero.txt)
     $ szero . --dev (enables devDependencies search).
-    $ szero . --file --dev
+    $ szero . --file --dev (add devDependencies to file output)
     $ szero . --summary  (shows only unused and missing dependencies)
     $ szero --help (shows help and usage)
     $ szero --version (shows szero's version)
