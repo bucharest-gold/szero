@@ -28,8 +28,8 @@ test('Should run a summary report', (t) => {
   cli(path.join(__dirname, '/fixtures'), {
     summary: true
   }).then((report) => {
-    t.deepEqual(report.dependencies, [ 'roi', 'fidelity', 'request', 'ramda' ]);
-    t.deepEqual(report.unused, [ 'request' ]);
+    t.deepEqual(report.dependencies.map(d => d.getName()), [ 'roi', 'fidelity', 'request', 'ramda' ]);
+    t.deepEqual(report.unused.map(d => d.getName()), [ 'request' ]);
     t.deepEqual(report.devDependencies, []);
     t.pass();
     t.end();

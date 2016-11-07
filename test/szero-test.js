@@ -38,7 +38,7 @@ test('Should find javascript files.', t => {
 test('Should search for dependencies.', t => {
   const lines = reader.read(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(lines, true);
-  t.equal(dependencies[0].toString().includes('roi'), true);
+  t.equal(dependencies[0][0].getName() === 'roi', true);
   t.end();
 });
 
@@ -109,6 +109,7 @@ test('Should show unused dependencies from report.', t => {
   const javascriptLines = reader.read(path.join(__dirname, '/fixtures/foo/x.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const unused = reporter.unused(declarations, dependencies[0]);
-  t.equal(unused.toString(), 'fidelity,request');
+  let names = unused.map(u => u.getName());
+  t.equal(names.toString(), 'fidelity,request');
   t.end();
 });
