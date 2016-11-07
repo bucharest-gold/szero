@@ -14,4 +14,4 @@ clean:
 node_modules: package.json
 	npm install
 
-.PHONY: node_modules
+.PHONY: clean
