@@ -92,15 +92,16 @@ test('Should report to file.', t => {
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
   const jsonReport = reporter.jsonReport(usage, dependencies);
-  reporter.fileReport(jsonReport);
-  try {
-    fs.statSync('szero.txt');
-    t.equal(1, 1);
-  } catch (e) {
-    console.error(e);
-    t.fail(e);
-  }
-  t.end();
+  reporter.fileReport(jsonReport).then(() => {
+    try {
+      fs.statSync('szero.txt');
+      t.equal(1, 1);
+    } catch (e) {
+      console.error(e);
+      t.fail(e);
+    }
+    t.end();
+  });
 });
 
 test('Should show unused dependencies from report.', t => {

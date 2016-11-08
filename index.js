@@ -28,8 +28,7 @@ function report (directory, options) {
 */
 function fileReport (directory, options) {
   return this.report(directory, options).then((jsonReport) => {
-    const createFileReport = reporter.createFileReport(jsonReport);
-    return Promise.resolve(createFileReport);
+    return reporter.createFileReport(jsonReport);
   });
 }
 
