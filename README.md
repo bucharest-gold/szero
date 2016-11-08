@@ -25,6 +25,7 @@ Sub Zero dependency search.
 
     $ szero /path_to/project  (or use '.' for current directory)
     $ szero .
+    $ szero . --license (add license info to the output)
     $ szero . --ci  ('break the build' if unused dependencies found)
     $ szero . --file (report the result to a file)
     $ szero . --filename (specify a different filename, defaults to szero.txt)
