@@ -47,10 +47,12 @@ module.exports = function run (directory, options) {
 
       if (options.consoleReporter) {
         reporter.consoleReport(jsonReport, options);
+        return resolve(jsonReport);
       }
 
       if (options.fileReporter) {
         reporter.fileReport(jsonReport, options);
+        return resolve(jsonReport);
       }
     }
 
