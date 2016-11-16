@@ -34,6 +34,28 @@ test('should return some info', (t) => {
   });
 });
 
+test('should return unused Array with 1 Dep Object', (t) => {
+  const dir = path.join(__dirname, '../sample_project');
+  const options = {};
+  szero.report(dir, options).then((jsonReport) => {
+    t.true(jsonReport.unused, 'should have a unused object');
+    t.equal(Array.isArray(jsonReport.unused), true, 'should be an array');
+    t.equal(jsonReport.unused[0].getName(), 'swapi-node', 'should be an array');
+    t.end();
+  });
+});
+
+test('should return unused as string', (t) => {
+  const dir = path.join(__dirname, '../.');
+  const options = {};
+  szero.report(dir, options).then((jsonReport) => {
+    t.true(jsonReport.unused, 'should have a unused object');
+    t.equal(Array.isArray(jsonReport.unused), false, 'should be an array');
+    t.equal(jsonReport.unused, 'None.', 'should be an array');
+    t.end();
+  });
+});
+
 test('should return file info', (t) => {
   const dir = path.join(__dirname, '../sample_project');
   const options = {};
