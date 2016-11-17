@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/bucharest-gold/szero/compare/v0.7.0...v0.7.1) (2016-11-17)
+
+
+### Bug Fixes
+
+* Unused Dependecies was actually an Array of Dep objects if there were unused dependencies.  Fixes issue #61 ([987e782](https://github.com/bucharest-gold/szero/commit/987e782)), closes [#61](https://github.com/bucharest-gold/szero/issues/61)
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/bucharest-gold/szero/compare/v0.6.0...v0.7.0) (2016-11-09)
 
