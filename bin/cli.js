@@ -20,6 +20,7 @@ module.exports = function run (directory, options) {
     const files = reader.find(directory);
     const result = [];
     const missingDependencies = new Set();
+    const requires = new Set();
     files.forEach(file => {
       const lines = reader.read(file);
       if (options.summary) {
@@ -29,13 +30,20 @@ module.exports = function run (directory, options) {
         }
       }
       const declarations = searcher.searchDeclarations(lines, dependencies[0]);
+      const require = searcher.searchRequires(lines);
+      if (require.length) {
+        require.forEach(r => {
+          requires.add(r);
+        });
+      }
+
       const usage = searcher.searchUsage(lines, file, declarations);
       if (usage.length) {
         result.push(usage);
       }
     });
 
-    const jsonReport = reporter.jsonReport(result, dependencies);
+    const jsonReport = reporter.jsonReport(result, dependencies, requires);
 
     if (options.summary) {
       reporter.summary(jsonReport, Array.from(missingDependencies));

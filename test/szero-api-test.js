@@ -23,13 +23,14 @@ test('should return some info', (t) => {
   const dir = path.join(__dirname, '../sample_project');
   const options = {};
   szero.report(dir, options).then((jsonReport) => {
-    t.equal(Object.keys(jsonReport).length, 6, 'should have 5 keys');
+    t.equal(Object.keys(jsonReport).length, 7, 'should have 7 keys');
     t.true(jsonReport.groups, 'should have a groups object');
     t.true(jsonReport.dependencies, 'should have a dependencies object');
     t.true(jsonReport.devDependencies, 'should have a devDependencies object');
     t.true(jsonReport.declarations, 'should have a declarations object');
     t.true(jsonReport.totals, 'should have a totals object');
     t.true(jsonReport.unused, 'should have a unused object');
+    t.true(jsonReport.requires, 'should have a requires object');
     t.end();
   });
 });
@@ -71,7 +72,7 @@ test('should return some info with licenses', (t) => {
     license: true
   };
   szero.report(dir, options).then((jsonReport) => {
-    t.equal(Object.keys(jsonReport).length, 7, 'should have 7 keys');
+    t.equal(Object.keys(jsonReport).length, 8, 'should have 8 keys');
     t.true(jsonReport.groups, 'should have a groups object');
     t.true(jsonReport.dependencies, 'should have a dependencies object');
     t.true(jsonReport.devDependencies, 'should have a devDependencies object');
@@ -79,6 +80,7 @@ test('should return some info with licenses', (t) => {
     t.true(jsonReport.totals, 'should have a totals object');
     t.true(jsonReport.unused, 'should have a unused object');
     t.true(jsonReport.licenses, 'should have the licenses object');
+    t.true(jsonReport.requires, 'should have a requires object');
     t.end();
   });
 });
