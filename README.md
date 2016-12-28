@@ -34,6 +34,7 @@ Sub Zero dependency search.
     $ szero . --summary  (shows only unused and missing dependencies)
     $ szero --help (shows help and usage)
     $ szero --version (shows szero's version)
+    $ szero . --silent (omits the output of information in the console) 
 
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
