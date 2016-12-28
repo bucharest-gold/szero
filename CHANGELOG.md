@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/bucharest-gold/szero/compare/v0.7.1...v0.8.0) (2016-12-28)
+
+
+### Features
+
+* require count console report. ([9bffddc](https://github.com/bucharest-gold/szero/commit/9bffddc))
+* silent mode ([a6f1d16](https://github.com/bucharest-gold/szero/commit/a6f1d16))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/bucharest-gold/szero/compare/v0.7.0...v0.7.1) (2016-11-17)
 
