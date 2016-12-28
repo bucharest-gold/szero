@@ -12,6 +12,7 @@ program
   .option('--ci', 'enables process.exit() when unused dependency found')
   .option('--dev', 'enables devDependencies processing.')
   .option('--summary', 'enables summary report')
+  .option('--silent','hides the console output.')
   .parse(process.argv);
 
 if (program.args.length === 0) {
@@ -22,6 +23,10 @@ if (program.args.length === 0) {
 const options = {
   consoleReporter: true
 };
+
+if (program.silent) {
+  options.consoleReporter = false;
+}
 
 options.fileReporter = program.file;
 
