@@ -33,7 +33,7 @@ module.exports = function run (directory, options) {
       const require = searcher.searchRequires(lines);
       if (require.length) {
         require.forEach(r => {
-          requires.add(r);
+          requires.add(file);
         });
       }
 
