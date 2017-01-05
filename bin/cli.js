@@ -1,5 +1,5 @@
 'use strict';
-
+const path = require('path');
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
@@ -33,7 +33,8 @@ module.exports = function run (directory, options) {
       const require = searcher.searchRequires(lines);
       if (require.length) {
         require.forEach(r => {
-          requires.add(file);
+          let m = r.replace("require('",'').replace("')",'').replace('.js','')
+          requires.add(path.resolve(file,m));
         });
       }
 
