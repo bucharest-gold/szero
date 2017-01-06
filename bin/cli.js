@@ -1,5 +1,5 @@
 'use strict';
-
+const path = require('path');
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
@@ -33,7 +33,18 @@ module.exports = function run (directory, options) {
       const require = searcher.searchRequires(lines);
       if (require.length) {
         require.forEach(r => {
-          requires.add(r);
+          let m = null;
+          if (r.includes('"')) {
+            m = r.split('"')[1];
+          } else if (r.includes("'")) {
+            m = r.split("'")[1];
+          } else {
+            return;
+          }
+          m = m.trim();
+          let dirFile = path.dirname(file);
+          let completePath = path.resolve(dirFile, m);
+          requires.add(path.relative(process.cwd(), completePath));
         });
       }
 
