@@ -38,6 +38,8 @@ module.exports = function run (directory, options) {
             m = r.split('"')[1];
           } else if (r.includes("'")) {
             m = r.split("'")[1];
+          } else {
+            return;
           }
           m = m.trim();
           let dirFile = path.dirname(file);
