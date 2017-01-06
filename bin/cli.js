@@ -33,8 +33,10 @@ module.exports = function run (directory, options) {
       const require = searcher.searchRequires(lines);
       if (require.length) {
         require.forEach(r => {
-          let m = r.replace("require('",'').replace("')",'').replace('.js','')
-          requires.add(path.resolve(file,m));
+          let m = r.replace("require('",'').replace("')",'').replace('.js','').trim()
+          let dirFile = path.dirname(file);
+          let completePath = path.resolve(dirFile, m);
+          requires.add(completePath);
         });
       }
 
