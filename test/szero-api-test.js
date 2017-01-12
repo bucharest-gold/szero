@@ -41,7 +41,7 @@ test('should return unused Array with 1 Dep Object', (t) => {
   szero.report(dir, options).then((jsonReport) => {
     t.true(jsonReport.unused, 'should have a unused object');
     t.equal(Array.isArray(jsonReport.unused), true, 'should be an array');
-    t.equal(jsonReport.unused[0].getName(), 'swapi-node', 'should be an array');
+    t.equal(jsonReport.unused[0].name, 'swapi-node', 'should be an array');
     t.end();
   });
 });
