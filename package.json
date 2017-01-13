@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "node-builtins": "^0.1.1",
     "roi": "^0.14.0"
   },
   "license": "Apache-2.0",
