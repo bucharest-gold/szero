@@ -148,3 +148,22 @@ test('Should show all unused dependencies.', t => {
   t.equal(names.toString(), 'roi');
   t.end();
 });
+
+test('should strip simple comment', (t) => {
+  const lines = reader.read(path.join(__dirname, '../sample_project/index.js'));
+  lines.forEach((element) => {
+    t.equal(element.indexOf('//'), -1);
+    t.equal(element.indexOf('simple comment'), -1);
+  });
+  t.end();
+});
+
+test('should strip multiline comments', (t) => {
+  const lines = reader.read(path.join(__dirname, '../sample_project/index.js'));
+  lines.forEach((element) => {
+    t.equal(element.indexOf('/*'), -1);
+    t.equal(element.indexOf('*/'), -1);
+    t.equal(element.indexOf("require('cluster')"), -1);
+  });
+  t.end();
+});
