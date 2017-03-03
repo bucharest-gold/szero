@@ -32,7 +32,7 @@ test('Should read a file.', (t) => {
 });
 
 test('Should find javascript files.', (t) => {
-  const files = reader.findJsFiles(path.join(__dirname, '../.'));
+  const files = searcher.searchJsFiles(path.join(__dirname, '../.'));
   t.equal(files.toString().includes('reader.js'), true);
   t.end();
 });
