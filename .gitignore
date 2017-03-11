@@ -4,3 +4,4 @@ node_modules
 coverage
 szero.txt
 docs/
+.nyc_output

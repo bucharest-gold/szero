@@ -10,19 +10,19 @@ module.exports = function run (directory, options) {
     options = options || {};
     let packageJson;
     try {
-      packageJson = reader.read(directory + '/package.json');
+      packageJson = reader.getFileLines(directory + '/package.json');
     } catch (e) {
       const error = 'package.json is require';
       log.red(error);
       return reject(error);
     }
     const dependencies = searcher.searchDependencies(packageJson, options.dev);
-    const files = reader.find(directory);
+    const files = searcher.searchJsFiles(directory);
     const result = [];
     const missingDependencies = new Set();
     const requires = new Set();
     files.forEach(file => {
-      const lines = reader.read(file);
+      const lines = reader.getFileLines(file);
       if (options.summary) {
         const missing = searcher.searchMissingDependencies(lines, dependencies);
         if (missing.length) {

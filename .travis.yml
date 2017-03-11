@@ -11,6 +11,7 @@ branches:
   only:
     - master
 after_success:
+  - npm run coverage
   - cat ./coverage/lcov.info | coveralls
 notifications:
   irc: "chat.freenode.net#brass-monkey"
