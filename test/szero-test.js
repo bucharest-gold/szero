@@ -10,30 +10,35 @@ const path = require('path');
 const stdout = require('test-console').stdout;
 
 test('Should test log-color.', (t) => {
+  t.plan(7);
   const red = stdout.inspectSync(() => log.red('red'));
-  t.deepEqual(red, ['\x1b[31mred\x1b[39m\n']);
+  t.deepEqual(red, ['\x1b[31mred\x1b[39m\n'], 'ANSI red.');
   const green = stdout.inspectSync(() => log.green('green'));
-  t.deepEqual(green, ['\x1b[32mgreen\x1b[39m\n']);
+  t.deepEqual(green, ['\x1b[32mgreen\x1b[39m\n'], 'ANSI green.');
   const yellow = stdout.inspectSync(() => log.yellow('yellow'));
-  t.deepEqual(yellow, ['\x1b[33myellow\x1b[39m\n']);
+  t.deepEqual(yellow, ['\x1b[33myellow\x1b[39m\n'], 'ANSI yellow.');
   const magenta = stdout.inspectSync(() => log.magenta('magenta'));
-  t.deepEqual(magenta, ['\x1b[35mmagenta\x1b[39m\n']);
+  t.deepEqual(magenta, ['\x1b[35mmagenta\x1b[39m\n'], 'ANSI magenta.');
 
-  t.equal(log.applyColor(1), '\x1b[31m[ 1 ]\x1b[39m');
-  t.equal(log.applyColor(2), '\x1b[33m[ 2 ]\x1b[39m');
-  t.equal(log.applyColor(99), '\x1b[32m[ 99 ]\x1b[39m');
+  t.equal(log.applyColor(1), '\x1b[31m[ 1 ]\x1b[39m', 'Only 1 usage is red.');
+  t.equal(log.applyColor(2), '\x1b[33m[ 2 ]\x1b[39m', 'Only 2 usages is yellow.');
+  t.equal(log.applyColor(99), '\x1b[32m[ 99 ]\x1b[39m', 'More than 2 usages is green.');
   t.end();
 });
 
 test('Should read a file.', (t) => {
+  t.plan(2);
   const lines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
-  t.equal(lines.toString().includes('require'), true);
+  t.equal(lines.length, 9, 'This file has 9 lines.');
+  t.equal(lines.toString().includes('require'), true, 'This file contains a require keyword.');
   t.end();
 });
 
 test('Should find javascript files.', (t) => {
+  t.plan(2);
   const files = searcher.searchJsFiles(path.join(__dirname, '../.'));
-  t.equal(files.toString().includes('reader.js'), true);
+  t.equal(files.length, 21, `szero project has ${files.length} .js files, including fixtures.`);
+  t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
   t.end();
 });
 
