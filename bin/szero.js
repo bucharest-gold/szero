@@ -6,6 +6,7 @@ const program = require('commander');
 program
   .version(require('../package.json').version)
   .usage('directory [--options]')
+  .option('-i --ignore [list]', 'ignore the specified directories. e.g: bower_components,examples')
   .option('-f --file', 'enable file reporter.')
   .option('-l --license', 'enable license lookup.')
   .option('--filename <filename>', 'change the default filename.')
@@ -33,6 +34,10 @@ options.fileReporter = program.file;
 if (program.filename) {
   options.filename = program.filename;
   options.fileReporter = true;
+}
+
+if (program.ignore) {
+  options.ignore = program.ignore.split(',').map((d) => d.trim());
 }
 
 options.ci = program.ci;

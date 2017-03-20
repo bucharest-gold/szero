@@ -19,22 +19,25 @@ Sub Zero dependency search.
 
 ## Installation
 
-    npm install szero -g
+```
+npm install szero -g
+```
 
 ## Usage
 
-    $ szero /path_to/project  (or use '.' for current directory)
-    $ szero .
-    $ szero . --license (add license info to the output)
-    $ szero . --ci  ('break the build' if unused dependencies found)
-    $ szero . --file (report the result to a file)
-    $ szero . --filename (specify a different filename, defaults to szero.txt)
-    $ szero . --dev (enables devDependencies search).
-    $ szero . --file --dev (add devDependencies to file output)
-    $ szero . --summary  (shows only unused and missing dependencies)
-    $ szero --help (shows help and usage)
-    $ szero --version (shows szero's version)
-    $ szero . --silent (omits the output of information in the console) 
+```
+szero /path_to/project  (or use '.' for current directory)
+szero .
+szero . --ignore (ignore the specified directories. e.g: bower_components,examples)
+szero . --file (enable file reporter)
+szero . --license (enable license lookup)
+szero . --filename <filename> (change the default filename)
+szero . --ci (enables process.exit() when unused dependency found)
+szero . --dev (enables devDependencies processing)
+szero . --summary (enables summary report)
+szero . --silent (hides the console output)
+szero . --silent (omits the output of information in the console) 
+```
 
 ![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
 
@@ -42,31 +45,41 @@ Sub Zero dependency search.
 
 The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
 
-    $szero /path_to/myproject --file
+```
+szero /path_to/myproject --file
+```
 
 To change the filename that is outputted, use the `--filename` option.
 
-    $szero /path_to/myproject --filename output.txt
+```
+szero /path_to/myproject --filename output.txt
+```
 
 ### Programmatic API
 
 To use the `szero` api in code, first install it locally
 
-    $ npm install szero --save
+```
+npm install szero --save
+```
 
 Then require it in your code and call the report method, which returns a Promise:
 
-    const szero = require('szero');
-    szero.report(directory).then((jsonReport) => {
-        console.log(jsonReport);
-    });
+```js
+const szero = require('szero');
+szero.report(directory).then((jsonReport) => {
+    console.log(jsonReport);
+});
+```
 
 To have the ouput be in the "file" format, for outputting to a file, just use the fileReport method, which also returns a Promise:
 
-    const szero = require('szero');
-    szero.fileReport(directory).then((fileReport) => {
-        fs.writeFileSync('szero.txt', fileReport);
-    });
+```js
+const szero = require('szero');
+szero.fileReport(directory).then((fileReport) => {
+    fs.writeFileSync('szero.txt', fileReport);
+});
+```
 
 More information can be found on the docs: https://bucharest-gold.github.io/szero/module-szero.html
 
