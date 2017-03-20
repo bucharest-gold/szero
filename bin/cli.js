@@ -17,7 +17,7 @@ module.exports = function run (directory, options) {
       return reject(error);
     }
     const dependencies = searcher.searchDependencies(packageJson, options.dev);
-    const files = searcher.searchJsFiles(directory);
+    const files = searcher.searchJsFiles(directory, [], options.ignore);
     const result = [];
     const missingDependencies = new Set();
     const requires = new Set();
