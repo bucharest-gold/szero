@@ -75,6 +75,15 @@ test('Should search for requires.', (t) => {
   t.end();
 });
 
+test('Should ignore commented requires.', (t) => {
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const dependencies = searcher.searchDependencies(packageJsonLines, true);
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/xpto/y.js'));
+  const requires = searcher.searchRequires(javascriptLines, dependencies[0]);
+  t.equal(requires.toString(), 'require(\'tape\')');
+  t.end();
+});
+
 test('Should search for declaration usage.', (t) => {
   const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);

@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "decomment": "^0.8.7",
     "node-builtins": "^0.1.1",
     "roi": "^0.15.0"
   },
