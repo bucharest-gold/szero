@@ -55,6 +55,38 @@ To change the filename that is outputted, use the `--filename` option.
 szero /path_to/myproject --filename output.txt
 ```
 
+## Grunt plugin
+Sub Zero provides a Grunt plugin.
+
+### Load the plugin
+This is done by adding the following line in `Gruntfile.js`
+
+     grunt.loadNpmTasks('szero');
+
+### Configure the plugin
+This is done by adding the `grunt.initConfig` section in `Gruntfile.js`
+
+    szero: {
+      directory: '.',
+      ci: false,
+      file: false,
+      filename: 'szero.txt',
+      dev: false,
+      summary: false
+    } 
+
+The above values are the default value and you are only required to list the you want to override. If you
+are happy with the default you don't need a configuration at all.
+
+### Usage
+With the configuration above running is simply a matter of:
+
+    $ grunt szero
+
+The configuration options can be overriden on the grunt command line, for example:
+
+    $ grunt szero --file --filename=somefile.txt
+
 ### Programmatic API
 
 To use the `szero` api in code, first install it locally
