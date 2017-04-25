@@ -37,7 +37,7 @@ test('Should read a file.', (t) => {
 test('Should find javascript files.', (t) => {
   t.plan(2);
   const files = searcher.searchJsFiles(path.join(__dirname, '../.'));
-  t.equal(files.length, 21, `szero project has ${files.length} .js files, including fixtures.`);
+  t.true(files.length > 0, 'szero project has some files.');
   t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
   t.end();
 });
