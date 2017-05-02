@@ -37,7 +37,15 @@ test('Should read a file.', (t) => {
 test('Should find javascript files.', (t) => {
   t.plan(2);
   const files = searcher.searchJsFiles(path.join(__dirname, '../.'));
-  t.equal(files.length, 21, `szero project has ${files.length} .js files, including fixtures.`);
+  t.true(files.length > 0, 'szero project has some files.');
+  t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
+  t.end();
+});
+
+test('Should find javascript files ignoring some directories.', (t) => {
+  t.plan(2);
+  const files = searcher.searchJsFiles(path.join(__dirname, '../.'), [], ['fixtures', 'sample_project']);
+  t.equal(files.length, 11, `szero project has ${files.length} .js files, excluding fixtures and sample_project directories.`);
   t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
   t.end();
 });
@@ -64,6 +72,15 @@ test('Should search for requires.', (t) => {
   const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
   const requires = searcher.searchRequires(javascriptLines, dependencies[0]);
   t.equal(requires.toString().includes('require'), true);
+  t.end();
+});
+
+test('Should ignore commented requires.', (t) => {
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const dependencies = searcher.searchDependencies(packageJsonLines, true);
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/xpto/y.js'));
+  const requires = searcher.searchRequires(javascriptLines, dependencies[0]);
+  t.equal(requires.toString(), 'require(\'tape\')');
   t.end();
 });
 

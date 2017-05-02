@@ -1,6 +1,6 @@
 {
   "name": "szero",
-  "version": "0.8.1",
+  "version": "0.9.2",
   "description": "Sub Zero dependency search.",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "decomment": "^0.8.7",
     "node-builtins": "^0.1.1",
     "roi": "^0.15.0"
   },
@@ -37,7 +38,6 @@
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
     "ink-docstrap": "^1.3.0",
-    "istanbul": "^0.4.5",
     "jsdoc": "^3.4.2",
     "nsp": "^2.6.1",
     "nyc": "^10.1.2",

@@ -10,14 +10,14 @@ module.exports = function run (directory, options) {
     options = options || {};
     let packageJson;
     try {
-      packageJson = reader.getFileLines(directory + '/package.json');
+      packageJson = reader.getFileLines(`${directory}/package.json`);
     } catch (e) {
       const error = 'package.json is require';
       log.red(error);
       return reject(error);
     }
     const dependencies = searcher.searchDependencies(packageJson, options.dev);
-    const files = searcher.searchJsFiles(directory);
+    const files = searcher.searchJsFiles(directory, [], options.ignore);
     const result = [];
     const missingDependencies = new Set();
     const requires = new Set();
@@ -42,8 +42,8 @@ module.exports = function run (directory, options) {
             return;
           }
           m = m.trim();
-          let dirFile = path.dirname(file);
-          let completePath = path.resolve(dirFile, m);
+          const dirFile = path.dirname(file);
+          const completePath = path.resolve(dirFile, m);
           requires.add(path.relative(process.cwd(), completePath));
         });
       }
