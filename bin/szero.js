@@ -46,7 +46,7 @@ options.dev = program.dev;
 options.license = program.license;
 
 if (program.summary) {
-  options.dev = true;
+  options.dev = false;
   options.summary = true;
 }
 
