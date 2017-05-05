@@ -28,8 +28,8 @@ test('Should test log-color.', (t) => {
 
 test('Should read a file.', (t) => {
   t.plan(2);
-  const lines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
-  t.equal(lines.length, 9, 'This file has 9 lines.');
+  const lines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
+  t.equal(lines.length, 5, 'This file has 5 lines.');
   t.equal(lines.toString().includes('require'), true, 'This file contains a require keyword.');
   t.end();
 });
@@ -51,36 +51,36 @@ test('Should find javascript files ignoring some directories.', (t) => {
 });
 
 test('Should search for dependencies.', (t) => {
-  const lines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const lines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
   const dependencies = searcher.searchDependencies(lines, true);
   t.equal(dependencies[0][0].name === 'roi', true);
   t.end();
 });
 
 test('Should search for declarations.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, true);
-  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   t.equal(declarations.toString().includes('require'), true);
   t.end();
 });
 
 test('Should search for requires.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, true);
-  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const requires = searcher.searchRequires(javascriptLines, dependencies[0]);
   t.equal(requires.toString().includes('require'), true);
   t.end();
 });
 
 test('Should ignore commented requires.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, true);
-  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/xpto/y.js'));
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/c/d/e/index.js'));
   const requires = searcher.searchRequires(javascriptLines, dependencies[0]);
-  t.equal(requires.toString(), 'require(\'tape\')');
+  t.equal(requires.toString(), 'require(\'opossum\')');
   t.end();
 });
 
