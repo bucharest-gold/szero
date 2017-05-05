@@ -85,13 +85,13 @@ test('Should ignore commented requires.', (t) => {
 });
 
 test('Should search for declaration usage.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '/fixtures/package.json'));
+  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
   const dependencies = searcher.searchDependencies(packageJsonLines, false);
-  const javascriptLines = reader.getFileLines(path.join(__dirname, '/fixtures/foo/x.js'));
+  const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
-  const usage = searcher.searchUsage(javascriptLines, 'x.js', declarations);
+  const usage = searcher.searchUsage(javascriptLines, 'index.js', declarations);
   t.equal(usage[0].declaration, 'roi-require(\'roi\')');
-  t.equal(usage[0].file, 'x.js');
+  t.equal(usage[0].file, 'index.js');
   t.equal(usage[0].line, 4);
   t.equal(1, 1);
   t.end();
