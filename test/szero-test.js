@@ -45,7 +45,7 @@ test('Should find javascript files.', (t) => {
 test('Should find javascript files ignoring some directories.', (t) => {
   t.plan(2);
   const files = searcher.searchJsFiles(path.join(__dirname, '../.'), [], ['fixtures', 'sample_project']);
-  t.equal(files.length, 11, `szero project has ${files.length} .js files, excluding fixtures and sample_project directories.`);
+  t.equal(files.length, 12, `szero project has ${files.length} .js files, excluding fixtures and sample_project directories.`);
   t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
   t.end();
 });
