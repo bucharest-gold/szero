@@ -1,10 +1,9 @@
 'use strict';
-const path = require('path');
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
 const log = require('../lib/log-color');
-const builder = require('../lib/dependency-builder')
+const builder = require('../lib/dependency-builder');
 
 module.exports = function run (directory, options = {}) {
   return new Promise((resolve, reject) => {
@@ -18,15 +17,14 @@ module.exports = function run (directory, options = {}) {
     }
 
     const files = searcher.searchJsFiles(directory, [], options.ignore);
-    
     const dependencies = builder.buildDependencies(packageJson, options);
     const result = builder.buildResult(files, dependencies);
     const requires = builder.buildRequires(files);
-  
+
     const jsonReport = reporter.jsonReport(result, dependencies, requires);
 
     if (options.summary) {
-      let missingDependencies = new Set(builder.buildMissingDependencies(files, dependencies));
+      const missingDependencies = new Set(builder.buildMissingDependencies(files, dependencies));
       reporter.summary(jsonReport, Array.from(missingDependencies));
     } else {
       if (jsonReport.unused !== 'None.' && options.ci) {
