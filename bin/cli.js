@@ -5,9 +5,11 @@ const reporter = require('../lib/reporter');
 const log = require('../lib/log-color');
 const builder = require('../lib/dependency-builder');
 
-module.exports = function run (directory, options = {}) {
+module.exports = function run (directory, options) {
   return new Promise((resolve, reject) => {
     let packageJson;
+    options = options || {};
+
     try {
       packageJson = reader.getFileLines(`${directory}/package.json`);
     } catch (e) {
