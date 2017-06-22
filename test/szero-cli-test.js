@@ -10,11 +10,11 @@ test('Should export a function', (t) => {
   t.end();
 });
 
-test('Should fail with no package.json', (t) => {
-  cli('package_with_no_package_json').then(null, (err) => {
-    t.equal('package.json is require', err, 'should have the package.json is required message');
+test('Should not fail with no package.json', (t) => {
+  console.log(path.join(__dirname, '..', 'sample_project_no_package_json'));
+  cli(path.join(__dirname, '..', 'sample_project_no_package_json')).then(_ => {
     t.end();
-  });
+  }).catch(t.fail);
 });
 
 test('Should pass and return an object with real project', (t) => {

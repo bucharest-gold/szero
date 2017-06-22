@@ -1,4 +1,5 @@
 'use strict';
+const fs = require('fs');
 const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
@@ -11,11 +12,11 @@ module.exports = function run (directory, options) {
     options = options || {};
 
     try {
-      packageJson = reader.getFileLines(`${directory}/package.json`);
+      const pkg = JSON.parse(fs.readFileSync(`${directory}/package.json`));
+      packageJson = Object.keys(pkg.dependencies);
     } catch (e) {
-      const error = 'package.json is require';
-      log.red(error);
-      return reject(error);
+      packageJson = [];
+      log.red('No package.json file found. Scanning directory for .js files.');
     }
 
     const files = searcher.searchJsFiles(directory, [], options.ignore);
