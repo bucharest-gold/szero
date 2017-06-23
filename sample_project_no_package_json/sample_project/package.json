@@ -1,0 +1,19 @@
+{
+  "name": "test_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+   "devDependencies": {
+    "eslint": "~3.8.1"
+  },
+  "dependencies": {
+    "roi": "*",
+    "swapi-node": "^0.4.0"
+  }
+}
