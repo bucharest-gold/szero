@@ -12,13 +12,11 @@ module.exports = function run (directory, options) {
     options = options || {};
 
     try {
-      const pkg = JSON.parse(fs.readFileSync(`${directory}/package.json`));
-      packageJson = Object.keys(pkg.dependencies);
+      packageJson = JSON.parse(fs.readFileSync(`${directory}/package.json`, 'utf-8'));
     } catch (e) {
       packageJson = [];
       log.red('No package.json file found. Scanning directory for .js files.');
     }
-
     const files = searcher.searchJsFiles(directory, [], options.ignore);
     const dependencies = builder.buildDependencies(packageJson, options);
     const result = builder.buildResult(files, dependencies);

@@ -51,15 +51,15 @@ test('Should find javascript files ignoring some directories.', (t) => {
 });
 
 test('Should search for dependencies.', (t) => {
-  const lines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
-  const dependencies = searcher.searchDependencies(lines, true);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, true);
   t.equal(dependencies[0][0].name === 'roi', true);
   t.end();
 });
 
 test('Should search for declarations.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, true);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, true);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   t.equal(declarations.toString().includes('require'), true);
@@ -85,8 +85,8 @@ test('Should ignore commented requires.', (t) => {
 });
 
 test('Should search for declaration usage.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, false);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, false);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const usage = searcher.searchUsage(javascriptLines, 'index.js', declarations);
@@ -98,8 +98,8 @@ test('Should search for declaration usage.', (t) => {
 });
 
 test('Should search for missing dependencies.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, true);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, true);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/c/d/f/index.js'));
   const missing = searcher.searchMissingDependencies(javascriptLines, dependencies);
   t.equal(missing.toString().includes('opossum'), true);
@@ -140,8 +140,8 @@ test('Should report to file.', (t) => {
 });
 
 test('Should show unused dependencies from report.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, false);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, false);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/a/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const unused = reporter.unused(declarations, dependencies[0]);
@@ -151,8 +151,8 @@ test('Should show unused dependencies from report.', (t) => {
 });
 
 test('Should show none for unused dependencies.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/foo/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, false);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'foo', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, false);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/foo/index.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const unused = reporter.unused(declarations, dependencies[0]);
@@ -161,8 +161,8 @@ test('Should show none for unused dependencies.', (t) => {
 });
 
 test('Should show all unused dependencies.', (t) => {
-  const packageJsonLines = reader.getFileLines(path.join(__dirname, '../sample_project/foo/package.json'));
-  const dependencies = searcher.searchDependencies(packageJsonLines, false);
+  const json = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'sample_project', 'foo', 'package.json'), 'utf-8'));
+  const dependencies = searcher.searchDependencies(json, false);
   const javascriptLines = reader.getFileLines(path.join(__dirname, '../sample_project/foo/all-unused.js'));
   const declarations = searcher.searchDeclarations(javascriptLines, dependencies[0]);
   const unused = reporter.unused(declarations, dependencies[0]);
