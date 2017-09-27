@@ -9,7 +9,7 @@ and be sure to include a title and clear description, as much relevant informati
 as possible, and a code sample or a test case demonstrating the expected behavior
 that is not occurring.
 
-Discussions can be done via github issues or IRC channel #brass-monkey.
+Discussions can be done via github issues or IRC channel #bucharest-gold.
 
 ## Code contributions
 
