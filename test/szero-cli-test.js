@@ -11,21 +11,21 @@ test.skip('Should export a function', (t) => {
 });
 
 test('Should not fail with no package.json', (t) => {
-  console.log(path.join(__dirname, '..', 'sample_project_no_package_json'));
-  cli(path.join(__dirname, '..', 'sample_project_no_package_json')).then(_ => {
+  console.log(path.join(__dirname, '..', 'test/sample_project_no_package_json'));
+  cli(path.join(__dirname, '..', 'test/sample_project_no_package_json')).then(_ => {
     t.end();
   }).catch(t.fail);
 });
 
 test('Should pass and return an object with real project', (t) => {
-  cli(path.join(__dirname, '../sample_project')).then((report) => {
+  cli(path.join(__dirname, 'sample_project')).then((report) => {
     t.pass();
     t.end();
   });
 });
 
 test('Should run a summary report', (t) => {
-  cli(path.join(__dirname, '../sample_project'), {
+  cli(path.join(__dirname, 'sample_project'), {
     summary: true
   }).then((report) => {
     t.deepEqual(report.dependencies.map(d => d.name), [ 'roi', 'swapi-node' ]);

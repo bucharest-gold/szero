@@ -11,7 +11,7 @@ test('should export report function', (t) => {
 });
 
 test('should return a promise', (t) => {
-  const dir = path.join(__dirname, '../sample_project');
+  const dir = path.join(__dirname, 'sample_project');
   const options = {};
   const szeroreturn = szero.report(dir, options);
 
@@ -20,7 +20,7 @@ test('should return a promise', (t) => {
 });
 
 test('should return some info', (t) => {
-  const dir = path.join(__dirname, '../sample_project');
+  const dir = path.join(__dirname, 'sample_project');
   const options = {};
   szero.report(dir, options).then((jsonReport) => {
     t.equal(Object.keys(jsonReport).length, 7, 'should have 7 keys');
@@ -36,7 +36,7 @@ test('should return some info', (t) => {
 });
 
 test('should return unused Array with 1 Dep Object', (t) => {
-  const dir = path.join(__dirname, '../sample_project');
+  const dir = path.join(__dirname, 'sample_project');
   const options = {};
   szero.report(dir, options).then((jsonReport) => {
     t.true(jsonReport.unused, 'should have a unused object');
@@ -58,7 +58,7 @@ test('should return unused as string', (t) => {
 });
 
 test('should return file info', (t) => {
-  const dir = path.join(__dirname, '../sample_project');
+  const dir = path.join(__dirname, 'sample_project');
   const options = {};
   szero.fileReport(dir, options).then((fileReport) => {
     t.equal(fileReport.indexOf('roi-require(\'roi\'):') > -1, true, 'The file report should have this require in it');
@@ -67,7 +67,7 @@ test('should return file info', (t) => {
 });
 
 test('should return some info with licenses', (t) => {
-  const dir = path.join(__dirname, '../sample_project');
+  const dir = path.join(__dirname, 'sample_project');
   const options = {
     license: true
   };
