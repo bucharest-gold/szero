@@ -9,14 +9,6 @@
 
 Sub Zero dependency search.
 
-|                 | Project Info  |
-| --------------- | ------------- |
-| License:        | Apache-2.0 |
-| Build:          | make |
-| Documentation:  | https://bucharest-gold.github.io/szero/module-szero.html |
-| Issue tracker:  | https://github.com/bucharest-gold/szero/issues |
-| Engines:        | Node.js 4.x, 6.x, 8.x |
-
 ## Installation
 
 ```
@@ -36,12 +28,7 @@ szero . --ci (enables process.exit() when unused dependency found)
 szero . --dev (enables devDependencies processing)
 szero . --summary (enables summary report)
 szero . --silent (hides the console output)
-szero . --silent (omits the output of information in the console) 
 ```
-
-![out.gif](https://raw.githubusercontent.com/bucharest-gold/szero/master/out.gif)
-
-![a.png](https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png)
 
 The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
 
