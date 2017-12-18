@@ -1,6 +1,6 @@
 'use strict';
+
 const fs = require('fs');
-const reader = require('../lib/reader');
 const searcher = require('../lib/searcher');
 const reporter = require('../lib/reporter');
 const log = require('../lib/log-color');
