@@ -26,6 +26,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "decomment": "^0.9.1",
+    "listjs": "^0.1.0",
     "node-builtins": "^0.1.1",
     "roi": "^0.16.1"
   },
