@@ -34,22 +34,6 @@ test('Should read a file.', (t) => {
   t.end();
 });
 
-test('Should find javascript files.', (t) => {
-  t.plan(2);
-  const files = searcher.searchJsFiles(path.join(__dirname, '../.'));
-  t.true(files.length > 0, 'szero project has some files.');
-  t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
-  t.end();
-});
-
-test('Should find javascript files ignoring some directories.', (t) => {
-  t.plan(2);
-  const files = searcher.searchJsFiles(path.join(__dirname, '../.'), [], ['fixtures', 'sample_project']);
-  t.equal(files.length, 12, `szero project has ${files.length} .js files, excluding fixtures and sample_project directories.`);
-  t.equal(files.toString().includes('reader.js'), true, 'reader.js file was found.');
-  t.end();
-});
-
 test('Should search for dependencies.', (t) => {
   const json = JSON.parse(fs.readFileSync(path.join(__dirname, 'sample_project', 'package.json'), 'utf-8'));
   const dependencies = searcher.searchDependencies(json, true);
