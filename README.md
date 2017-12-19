@@ -18,57 +18,43 @@ npm install szero -g
 ## Usage
 
 ```
-szero /path_to/project  (or use '.' for current directory)
-szero .
-szero . --ignore (ignore the specified directories. e.g: bower_components,examples)
-szero . --file (enable file reporter)
-szero . --license (enable license lookup)
-szero . --filename <filename> (change the default filename)
-szero . --ci (enables process.exit() when unused dependency found)
-szero . --dev (enables devDependencies processing)
-szero . --summary (enables summary report)
-szero . --silent (hides the console output)
+$ szero --help
+Usage: szero /path/to/project [options]
+
+Options:
+  --version     Show version number                                    [boolean]
+  --ignore, -i  ignores the specified directories separated by space. e.g:
+                bower_components examples test             [array] [default: []]
+  --ci          enables process.exit() when unused dependency found.
+                                                                [default: false]
+  --dev         enables devDependencies processing.             [default: false]
+  --help        Show help                                              [boolean]
 ```
 
-The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
-
 ```
-szero /path_to/myproject --file
-```
-
-To change the filename that is outputted, use the `--filename` option.
-
-```
-szero /path_to/myproject --filename output.txt
-```
-
-### Programmatic API
-
-To use the `szero` api in code, first install it locally
-
-```
-npm install szero --save
-```
-
-Then require it in your code and call the report method, which returns a Promise:
-
-```js
-const szero = require('szero');
-szero.report(directory).then((jsonReport) => {
-    console.log(jsonReport);
-});
+------------------------------------------------------------
+[ Unused dependencies ]
+------------------------------------------------------------
+commander
+------------------------------------------------------------
+[ Unused devDependencies ]
+------------------------------------------------------------
+eslint
+eslint-config-semistandard
+eslint-config-standard
+eslint-plugin-import
+eslint-plugin-node
+eslint-plugin-promise
+eslint-plugin-react
+eslint-plugin-standard
+license-reporter
+nsp
+nyc
+standard-version
+tap-spec
 ```
 
-To have the ouput be in the "file" format, for outputting to a file, just use the fileReport method, which also returns a Promise:
-
-```js
-const szero = require('szero');
-szero.fileReport(directory).then((fileReport) => {
-    fs.writeFileSync('szero.txt', fileReport);
-});
-```
-
-More information can be found on the docs: https://bucharest-gold.github.io/szero/module-szero.html
+> NOTE: Not always devDependences are used via require(), so a larger number of unused devDependencies is expected in the output result.
 
 ## Contributing
 

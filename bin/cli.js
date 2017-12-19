@@ -2,58 +2,93 @@
 
 const fs = require('fs');
 const listJS = require('listjs');
-const reporter = require('../lib/reporter');
-const log = require('../lib/log-color');
-const builder = require('../lib/dependency-builder');
+const detective = require('detective');
+const coreModules = require('node-builtins');
+const validator = require('node-project-validator');
 
-module.exports = function run (directory, options) {
-  return new Promise((resolve, reject) => {
-    let packageJson;
-    options = options || {};
+// ANSI escape code for RED.
+const RED = '\x1b[31m';
+// ANSI escape code for reset.
+const RESET = '\x1b[39m';
+// Concatenates and returns the parameter with ANSI code to reset.
+const reset = s => `${s}${RESET}`;
+// Log with RED color.
+const logRed = s => console.log(`${RED}${reset(s)}`);
 
-    try {
-      packageJson = JSON.parse(fs.readFileSync(`${directory}/package.json`, 'utf-8'));
-    } catch (e) {
-      packageJson = [];
-      log.red('No package.json file found. Scanning directory for .js files.');
-    }
-    listJS(directory, options.ignore)
-      .then((files) => {
-        const dependencies = builder.buildDependencies(packageJson, options);
-        const result = builder.buildResult(files, dependencies);
-        const requires = builder.buildRequires(files);
-        const jsonReport = reporter.jsonReport(result, dependencies, requires);
-        if (options.summary) {
-          const missingDependencies = new Set(builder.buildMissingDependencies(files, dependencies));
-          reporter.summary(jsonReport, Array.from(missingDependencies));
-        } else {
-          if (jsonReport.unused !== 'None.' && options.ci) {
-            reporter.consoleReport(jsonReport);
-            process.exit(1);
-          }
+const run = (options) => {
+  const dir = options.directory;
 
-          if (options.consoleReporter) {
-            reporter.consoleReport(jsonReport, options);
-            return resolve(jsonReport);
-          }
+  // validates the project.
+  validator.hasPackageJson(dir, true);
+  validator.hasAnyDependencies(dir, true);
+  validator.hasNodeModules(dir, true);
 
-          if (options.fileReporter) {
-            reporter.fileReport(jsonReport, options);
-            return resolve(jsonReport);
-          }
-        }
+  // ignores test directory by default.
+  if (!options.dev) {
+    options.ignore.push('test');
+  }
 
-        if (!options.license) {
-          return resolve(jsonReport);
-        }
+  // all the require() found.
+  const requireSet = new Set();
 
-        reporter.licenseReport(jsonReport.dependencies).then((licenses) => {
-          jsonReport.licenses = licenses;
-          return resolve(jsonReport);
-        }).catch((err) => {
-          // There was an error with the getting of the license
-          return reject(err);
+  // lists JS files.
+  listJS(dir, options.ignore)
+    .then((files) => {
+      // searches the require() for each file.
+      files.forEach((f) => {
+        const src = fs.readFileSync(f);
+        const requires = detective(src);
+        // saves the requires found in a Set to avoid duplicated results.
+        requires.forEach((r) => {
+          requireSet.add(r);
         });
       });
-  });
+
+      // removes core modules from the Set.
+      const withoutCoreModules = Array.from(requireSet).filter(e => !coreModules.includes(e));
+
+      // compare with declared dependencies and display unused.
+      const deps = Object.keys(require(`${dir}/package.json`).dependencies);
+      const unusedDependencies = deps.filter(e => !withoutCoreModules.includes(e));
+      logRed('-'.repeat(60));
+      logRed('[ Unused dependencies ]');
+      logRed('-'.repeat(60));
+      if (unusedDependencies.length > 0) {
+        unusedDependencies.forEach((e) => {
+          logRed(e);
+        });
+        if (options.ci) {
+          process.exit(1);
+        }
+      } else {
+        logRed('None.');
+      }
+
+      if (options.dev) {
+        // compare with declared devDependencies and display unused.
+        const devDeps = Object.keys(require(`${dir}/package.json`).devDependencies);
+        const unusedDevDependencies = devDeps.filter(e => !withoutCoreModules.includes(e));
+        logRed('-'.repeat(60));
+        logRed('[ Unused devDependencies ]');
+        logRed('-'.repeat(60));
+        if (unusedDevDependencies.length > 0) {
+          unusedDevDependencies.forEach((e) => {
+            logRed(e);
+          });
+          if (options.ci) {
+            process.exit(1);
+          }
+        } else {
+          logRed('None.');
+        }
+      }
+      return unusedDependencies;
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+};
+
+module.exports = {
+  run
 };
