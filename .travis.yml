@@ -2,16 +2,10 @@ language: node_js
 node_js:
   - "8"
   - "9"
-before_script:
-  - npm install -g coveralls
 script:
-   - npm run lint
    - npm test
 branches:
   only:
     - master
-after_success:
-  - npm run coverage
-  - cat ./coverage/lcov.info | coveralls
 notifications:
   irc: "chat.freenode.net#bucharest-gold"

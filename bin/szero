@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+'use strict';
+
+const cli = require('./cli');
+const yargs = require('yargs');
+const { resolve } = require('path');
+
+process.title = 'szero';
+
+yargs
+  .version(require('../package.json').version)
+  .usage('Usage: $0 /path/to/project [options]')
+  .option('ignore', {
+    alias: 'i',
+    describe: 'ignores the specified directories separated by space. e.g: bower_components examples test',
+    type: 'array',
+    default: []
+  })
+  .option('ci', {
+    describe: 'enables process.exit() when unused dependency found.',
+    default: false
+  })
+  .option('dev', {
+    describe: 'enables devDependencies processing.',
+    default: false
+  })
+  .help();
+
+const argv = yargs.argv;
+
+const options = {
+  ignore: argv.ignore,
+  directory: argv._[0],
+  silent: argv.silent,
+  dev: argv.dev,
+  ci: argv.ci
+};
+
+if (!options.directory || options.directory === '.') {
+  options.directory = process.cwd();
+}
+
+options.directory = resolve(options.directory);
+
+cli.run(options);

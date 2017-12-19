@@ -4,19 +4,15 @@
   "description": "Sub Zero dependency search.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc tape test/*.js | tap-spec",
-    "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
-    "lint": "eslint test/*.js index.js lib/*.js bin/*.js",
-    "prepare": "nsp check",
-    "release": "standard-version",
-    "licenses": "license-reporter report"
+    "test": "jest",
+    "jest-w": "jest --watch",
+    "prepare": "nsp check"
   },
   "files": [
     "bin",
     "LICENSE.txt",
     "package.json",
-    "README.md",
-    "lib"
+    "README.md"
   ],
   "author": "Helio Frota",
   "repository": {
@@ -24,32 +20,19 @@
     "url": "bucharest-gold/szero"
   },
   "dependencies": {
-    "commander": "^2.9.0",
-    "decomment": "^0.9.1",
+    "detective": "^4.7.0",
     "listjs": "^0.1.0",
     "node-builtins": "^0.1.1",
-    "roi": "^0.16.1"
+    "node-project-validator": "^0.1.3",
+    "yargs": "^10.0.3"
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "eslint": "^4.13.1",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-standard": "^3.0.1",
-    "license-reporter": "^1.0.2",
-    "nsp": "^3.1.0",
-    "nyc": "^11.3.0",
-    "standard-version": "^4.2.0",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.0",
-    "test-console": "^1.0.0"
+    "jest": "^22.0.3",
+    "nsp": "^3.1.0"
   },
   "preferGlobal": true,
   "bin": {
-    "szero": "./bin/szero.js"
+    "szero": "./bin/szero"
   }
 }
