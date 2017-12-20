@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "detective": "^4.7.0",
+    "license-reporter": "^1.1.0",
     "listjs": "^0.1.0",
     "node-builtins": "^0.1.1",
     "node-project-validator": "^0.1.3",
