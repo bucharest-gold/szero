@@ -5,15 +5,7 @@ const listJS = require('listjs');
 const detective = require('detective');
 const coreModules = require('node-builtins');
 const validator = require('node-project-validator');
-
-// ANSI escape code for RED.
-const RED = '\x1b[31m';
-// ANSI escape code for reset.
-const RESET = '\x1b[39m';
-// Concatenates and returns the parameter with ANSI code to reset.
-const reset = s => `${s}${RESET}`;
-// Log with RED color.
-const logRed = s => console.log(`${RED}${reset(s)}`);
+const licenseReporter = require('license-reporter');
 
 const run = (options) => {
   const dir = options.directory;
@@ -50,30 +42,30 @@ const run = (options) => {
       // compare with declared dependencies and display unused.
       const deps = Object.keys(require(`${dir}/package.json`).dependencies);
       const unusedDependencies = deps.filter(e => !withoutCoreModules.includes(e));
-      logRed('-'.repeat(60));
-      logRed('[ Unused dependencies ]');
-      logRed('-'.repeat(60));
+      console.log('-'.repeat(60));
+      console.log('[ Unused dependencies ]');
+      console.log('-'.repeat(60));
       if (unusedDependencies.length > 0) {
         unusedDependencies.forEach((e) => {
-          logRed(e);
+          console.log(e);
         });
         if (options.ci) {
           process.exit(1);
         }
       } else {
-        logRed('None.');
+        console.log('None.');
       }
 
       if (options.dev) {
         // compare with declared devDependencies and display unused.
         const devDeps = Object.keys(require(`${dir}/package.json`).devDependencies);
         const unusedDevDependencies = devDeps.filter(e => !withoutCoreModules.includes(e));
-        logRed('-'.repeat(60));
-        logRed('[ Unused devDependencies ]');
-        logRed('-'.repeat(60));
+        console.log('-'.repeat(60));
+        console.log('[ Unused devDependencies ]');
+        console.log('-'.repeat(60));
         if (unusedDevDependencies.length > 0) {
           unusedDevDependencies.forEach((e) => {
-            logRed(e);
+            console.log(e);
           });
           if (options.ci) {
             process.exit(1);
@@ -82,7 +74,13 @@ const run = (options) => {
           logRed('None.');
         }
       }
-      return unusedDependencies;
+
+      if (options.license) {
+        console.log('-'.repeat(60));
+        console.log('[ Licenses ]');
+        console.log('-'.repeat(60));
+        licenseReporter.licenses(dir, false, true);
+      }
     })
     .catch((e) => {
       console.error(e);

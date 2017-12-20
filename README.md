@@ -18,17 +18,19 @@ npm install szero -g
 ## Usage
 
 ```
-$ szero --help
+$ szero . --help
 Usage: szero /path/to/project [options]
 
 Options:
-  --version     Show version number                                    [boolean]
-  --ignore, -i  ignores the specified directories separated by space. e.g:
-                bower_components examples test             [array] [default: []]
-  --ci          enables process.exit() when unused dependency found.
+  --version      Show version number                                   [boolean]
+  --ignore, -i   ignores the specified directories separated by space. e.g:
+                 bower_components examples test            [array] [default: []]
+  --ci           enables process.exit() when unused dependency found.
                                                                 [default: false]
-  --dev         enables devDependencies processing.             [default: false]
-  --help        Show help                                              [boolean]
+  --dev          enables devDependencies processing.            [default: false]
+  --license, -l  Displays license information for each dependency.
+                                                                [default: false]
+  --help         Show help                                             [boolean]
 ```
 
 ```
@@ -55,6 +57,10 @@ tap-spec
 ```
 
 > NOTE: Not always devDependences are used via require(), so a larger number of unused devDependencies is expected in the output result.
+
+When using the option `--license` or `-l` szero will display information about license for each dependency.
+
+> Thanks to [license-reporter](https://github.com/bucharest-gold/license-reporter) for the license information for each dependency.
 
 ## Contributing
 

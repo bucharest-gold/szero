@@ -24,6 +24,11 @@ yargs
     describe: 'enables devDependencies processing.',
     default: false
   })
+  .option('license', {
+    alias: 'l',
+    describe: 'Displays license information for each dependency.',
+    default: false
+  })
   .help();
 
 const argv = yargs.argv;
@@ -33,7 +38,8 @@ const options = {
   directory: argv._[0],
   silent: argv.silent,
   dev: argv.dev,
-  ci: argv.ci
+  ci: argv.ci,
+  license: argv.license
 };
 
 if (!options.directory || options.directory === '.') {
