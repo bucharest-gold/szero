@@ -8,7 +8,6 @@ const { resolve } = require('path');
 process.title = 'szero';
 
 yargs
-  .version(require('../package.json').version)
   .usage('Usage: $0 /path/to/project [options]')
   .option('ignore', {
     alias: 'i',
@@ -28,8 +27,7 @@ yargs
     alias: 'l',
     describe: 'Displays license information for each dependency.',
     default: false
-  })
-  .help();
+  });
 
 const argv = yargs.argv;
 
